@@ -3,7 +3,7 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:material_math/main_state.dart';
 import 'package:material_math/main_state_notifier.dart';
 import 'package:material_math/pages/home/home_screen.dart';
-import 'package:material_math/pages/math/question_format_setting_screen.dart';
+import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_screen.dart';
 import 'package:material_math/pages/setting/setting_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -95,6 +95,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
