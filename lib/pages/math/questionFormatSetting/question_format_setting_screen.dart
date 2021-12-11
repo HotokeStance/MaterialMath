@@ -108,7 +108,7 @@ class CalculationSymbolSetting extends StatelessWidget {
                   children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Icon(Icons.add_circle_outlined,
+                      child: Icon(Icons.add_circle_outline_rounded,
                           color: Colors.white, size: 24.0),
                     ),
                     Text(
