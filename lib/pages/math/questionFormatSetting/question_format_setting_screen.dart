@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_state.dart';
 import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_state_notifier.dart';
@@ -51,13 +52,19 @@ class NumberOfProblemsSetting extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(
+        SizedBox(
           width: 130,
           height: 60,
           child: TextField(
-            enabled: true,
-            maxLines: 1,
-          ),
+              enabled: true,
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              onChanged: (input) {
+                context
+                    .read<QuestionFormatSettingStateNotifier>()
+                    .changeNumberOfProblems(input);
+              }),
         ),
         Text('問', style: TextStyle(color: Colors.grey.shade600)),
       ],
@@ -238,6 +245,8 @@ class StartMath extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberOfProblems = context.select<QuestionFormatSettingState, int>(
+        (state) => state.numberOfProblems);
     final plusChecked = context
         .select<QuestionFormatSettingState, bool>((state) => state.plusChecked);
     final minusChecked = context.select<QuestionFormatSettingState, bool>(
@@ -247,10 +256,10 @@ class StartMath extends StatelessWidget {
     final dividedChecked = context.select<QuestionFormatSettingState, bool>(
         (state) => state.dividedChecked);
 
-    final isStart =
-        plusChecked || minusChecked || multipliedChecked || dividedChecked
-            ? true
-            : false;
+    final isStart = numberOfProblems > 0 &&
+            (plusChecked || minusChecked || multipliedChecked || dividedChecked)
+        ? true
+        : false;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -272,7 +281,7 @@ class StartMath extends StatelessWidget {
                 ? () {
                     context
                         .read<QuestionFormatSettingStateNotifier>()
-                        .startMath();
+                        .startMath(context);
                   }
                 : null,
           ),
