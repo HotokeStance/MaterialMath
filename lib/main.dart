@@ -1,13 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:material_math/main_state.dart';
 import 'package:material_math/main_state_notifier.dart';
 import 'package:material_math/pages/home/home_screen.dart';
 import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_screen.dart';
 import 'package:material_math/pages/setting/setting_screen.dart';
+import 'package:material_math/util/typeAdapter/question_submission_result_type_adapter.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  // Hiveの初期化
+  await Hive.initFlutter();
+  Hive.registerAdapter(QuestionSubmissionResultModelAdapter());
   runApp(const MyApp());
 }
 
@@ -59,24 +65,19 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
-  int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const QuestionFormatSettingScreen(),
     const SettingScreen(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final selectedIndex =
+        context.select<MainState, int>((state) => state.selectedIndex);
     return Scaffold(
       body: Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -93,8 +94,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             label: 'Setting',
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: selectedIndex,
+        onTap: (index) {
+          context.read<MainStateNotifier>().changeTabIndex(index);
+        },
         type: BottomNavigationBarType.fixed,
       ),
     );
