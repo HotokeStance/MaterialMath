@@ -7,6 +7,7 @@ import 'package:material_math/main_state_notifier.dart';
 import 'package:material_math/pages/home/home_screen.dart';
 import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_screen.dart';
 import 'package:material_math/pages/setting/setting_screen.dart';
+import 'package:material_math/util/app_color.dart';
 import 'package:material_math/util/typeAdapter/question_submission_result_type_adapter.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +24,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SafeArea(child: MyHomePage()),
+    return MaterialApp(
+      theme: AppColor.light(),
+      darkTheme: AppColor.dark(),
+      themeMode: ThemeMode.system,
+      home: const SafeArea(child: MyHomePage()),
     );
   }
 }

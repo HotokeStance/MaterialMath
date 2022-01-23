@@ -86,7 +86,9 @@ class _InputAnswer extends StatelessWidget {
         Text('No. $nowIndex'),
         const SizedBox(height: 16),
         Text(
-            '${problemsList[nowProblemIndex].leftSide} ${problemsList[nowProblemIndex].symbol} ${problemsList[nowProblemIndex].rightSide}'),
+          '${problemsList[nowProblemIndex].leftSide} ${problemsList[nowProblemIndex].symbol} ${problemsList[nowProblemIndex].rightSide}',
+          style: const TextStyle(fontSize: 20),
+        ),
         const SizedBox(height: 8),
         Row(
           children: [
@@ -97,7 +99,10 @@ class _InputAnswer extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
               ),
-              child: Text(inputAnswer),
+              child: Text(
+                inputAnswer,
+                style: const TextStyle(fontSize: 24),
+              ),
             ),
           ],
         ),

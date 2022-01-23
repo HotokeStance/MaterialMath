@@ -66,7 +66,7 @@ class NumberOfProblemsSetting extends StatelessWidget {
                     .changeNumberOfProblems(input);
               }),
         ),
-        Text('問', style: TextStyle(color: Colors.grey.shade600)),
+        const Text('問'),
       ],
     );
   }
