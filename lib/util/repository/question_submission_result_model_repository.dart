@@ -16,7 +16,10 @@ class QuestionSubmissionResultModelRepository
   @override
   Future<List<QuestionSubmissionResultModel>> fetchAll() async {
     final box = await _questionSubmissionResultModelBox.box;
-    return box.values.toList();
+    final list = box.values.toList();
+    // 日付の降順でソート
+    list.sort((a, b) => b.date.compareTo(a.date));
+    return list;
   }
 
   /// レコードを保存する
