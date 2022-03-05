@@ -1,4 +1,5 @@
 import 'package:material_math/pages/home/home_state.dart';
+import 'package:material_math/util/format_data.dart';
 import 'package:material_math/util/repository/question_submission_result_model_repository.dart';
 import 'package:material_math/util/typeAdapter/question_submission_result_type_adapter.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -29,8 +30,8 @@ class HomeStateNotifier extends StateNotifier<HomeState> with LocatorMixin {
               symbols: e.symbols,
               properNumber: e.properNumber,
               numberOfProblems: e.numberOfProblems,
-              time: e.time,
-              date: e.date.toString(),
+              time: FormatData.formatStopWatch(e.time),
+              date: FormatData.formatDate(e.date),
             ))
         .toList();
     state = state.copyWith(
