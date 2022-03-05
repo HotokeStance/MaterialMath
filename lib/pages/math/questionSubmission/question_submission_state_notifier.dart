@@ -9,13 +9,19 @@ import 'package:state_notifier/state_notifier.dart';
 class QuestionSubmissionStateNotifier
     extends StateNotifier<QuestionSubmissionState> with LocatorMixin {
   final int numberOfProblems;
+  final int numberOfDigits;
   final bool plusChecked;
   final bool minusChecked;
   final bool multipliedChecked;
   final bool dividedChecked;
 
-  QuestionSubmissionStateNotifier(this.numberOfProblems, this.plusChecked,
-      this.minusChecked, this.multipliedChecked, this.dividedChecked)
+  QuestionSubmissionStateNotifier(
+      this.numberOfProblems,
+      this.numberOfDigits,
+      this.plusChecked,
+      this.minusChecked,
+      this.multipliedChecked,
+      this.dividedChecked)
       : super(const QuestionSubmissionState());
 
   Stopwatch stopWatch = Stopwatch();
@@ -28,12 +34,21 @@ class QuestionSubmissionStateNotifier
     stopWatch.start();
   }
 
+  /// 桁数作成
+  int _createNumberOfDigits() {
+    var randomDigits = '';
+    for (int i = 0; i < numberOfDigits; i++) {
+      randomDigits += '9';
+    }
+    return int.parse(randomDigits);
+  }
+
   /// 問題作成
   void createProblems() {
     late List<ProblemState> problemsList = [];
     for (int i = 0; i < numberOfProblems; i++) {
-      final leftSide = Random().nextInt(999) + 1;
-      final rightSide = Random().nextInt(999) + 1;
+      final leftSide = Random().nextInt(_createNumberOfDigits()) + 1;
+      final rightSide = Random().nextInt(_createNumberOfDigits()) + 1;
       final symbolNumber = Random().nextInt(4);
       // 足し算
       if (plusChecked && symbolNumber == 0) {
@@ -47,8 +62,11 @@ class QuestionSubmissionStateNotifier
         ));
       } else if (minusChecked && symbolNumber == 1) {
         // 引き算
-        final answer =
-            leftSide >= rightSide ? leftSide - rightSide : rightSide - leftSide;
+        if (leftSide < rightSide) {
+          i--;
+          continue;
+        }
+        final answer = leftSide - rightSide;
         problemsList.add(ProblemState(
           problemIndex: i,
           leftSide: leftSide.toString(),
@@ -69,12 +87,8 @@ class QuestionSubmissionStateNotifier
       } else if (dividedChecked && symbolNumber == 3) {
         // 割り算
         if (leftSide % rightSide != 0) {
-          if (i == 0) {
-            continue;
-          } else {
-            i--;
-            continue;
-          }
+          i--;
+          continue;
         }
         final answer = leftSide / rightSide;
         problemsList.add(ProblemState(

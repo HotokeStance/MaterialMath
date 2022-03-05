@@ -6,6 +6,7 @@ part 'question_format_setting_state.freezed.dart';
 class QuestionFormatSettingState with _$QuestionFormatSettingState {
   const factory QuestionFormatSettingState({
     @Default(0) int numberOfProblems,
+    @Default(0) int numberOfDigits,
     @Default(false) bool plusChecked,
     @Default(false) bool minusChecked,
     @Default(false) bool multipliedChecked,

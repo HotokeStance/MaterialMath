@@ -9,12 +9,14 @@ class QuestionSubmissionScreen extends StatelessWidget {
   const QuestionSubmissionScreen(
       {Key? key,
       required this.numberOfProblems,
+      required this.numberOfDigits,
       required this.plusChecked,
       required this.minusChecked,
       required this.multipliedChecked,
       required this.dividedChecked})
       : super(key: key);
   final int numberOfProblems;
+  final int numberOfDigits;
   final bool plusChecked;
   final bool minusChecked;
   final bool multipliedChecked;
@@ -28,6 +30,7 @@ class QuestionSubmissionScreen extends StatelessWidget {
             QuestionSubmissionState>(
           create: (_) => QuestionSubmissionStateNotifier(
             numberOfProblems,
+            numberOfDigits,
             plusChecked,
             minusChecked,
             multipliedChecked,
