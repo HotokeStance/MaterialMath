@@ -19,12 +19,14 @@ class _$QuestionFormatSettingStateTearOff {
 
   _QuestionFormatSettingState call(
       {int numberOfProblems = 0,
+      int numberOfDigits = 0,
       bool plusChecked = false,
       bool minusChecked = false,
       bool multipliedChecked = false,
       bool dividedChecked = false}) {
     return _QuestionFormatSettingState(
       numberOfProblems: numberOfProblems,
+      numberOfDigits: numberOfDigits,
       plusChecked: plusChecked,
       minusChecked: minusChecked,
       multipliedChecked: multipliedChecked,
@@ -39,6 +41,7 @@ const $QuestionFormatSettingState = _$QuestionFormatSettingStateTearOff();
 /// @nodoc
 mixin _$QuestionFormatSettingState {
   int get numberOfProblems => throw _privateConstructorUsedError;
+  int get numberOfDigits => throw _privateConstructorUsedError;
   bool get plusChecked => throw _privateConstructorUsedError;
   bool get minusChecked => throw _privateConstructorUsedError;
   bool get multipliedChecked => throw _privateConstructorUsedError;
@@ -56,6 +59,7 @@ abstract class $QuestionFormatSettingStateCopyWith<$Res> {
       _$QuestionFormatSettingStateCopyWithImpl<$Res>;
   $Res call(
       {int numberOfProblems,
+      int numberOfDigits,
       bool plusChecked,
       bool minusChecked,
       bool multipliedChecked,
@@ -74,6 +78,7 @@ class _$QuestionFormatSettingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? numberOfProblems = freezed,
+    Object? numberOfDigits = freezed,
     Object? plusChecked = freezed,
     Object? minusChecked = freezed,
     Object? multipliedChecked = freezed,
@@ -83,6 +88,10 @@ class _$QuestionFormatSettingStateCopyWithImpl<$Res>
       numberOfProblems: numberOfProblems == freezed
           ? _value.numberOfProblems
           : numberOfProblems // ignore: cast_nullable_to_non_nullable
+              as int,
+      numberOfDigits: numberOfDigits == freezed
+          ? _value.numberOfDigits
+          : numberOfDigits // ignore: cast_nullable_to_non_nullable
               as int,
       plusChecked: plusChecked == freezed
           ? _value.plusChecked
@@ -114,6 +123,7 @@ abstract class _$QuestionFormatSettingStateCopyWith<$Res>
   @override
   $Res call(
       {int numberOfProblems,
+      int numberOfDigits,
       bool plusChecked,
       bool minusChecked,
       bool multipliedChecked,
@@ -135,6 +145,7 @@ class __$QuestionFormatSettingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? numberOfProblems = freezed,
+    Object? numberOfDigits = freezed,
     Object? plusChecked = freezed,
     Object? minusChecked = freezed,
     Object? multipliedChecked = freezed,
@@ -144,6 +155,10 @@ class __$QuestionFormatSettingStateCopyWithImpl<$Res>
       numberOfProblems: numberOfProblems == freezed
           ? _value.numberOfProblems
           : numberOfProblems // ignore: cast_nullable_to_non_nullable
+              as int,
+      numberOfDigits: numberOfDigits == freezed
+          ? _value.numberOfDigits
+          : numberOfDigits // ignore: cast_nullable_to_non_nullable
               as int,
       plusChecked: plusChecked == freezed
           ? _value.plusChecked
@@ -170,6 +185,7 @@ class __$QuestionFormatSettingStateCopyWithImpl<$Res>
 class _$_QuestionFormatSettingState implements _QuestionFormatSettingState {
   const _$_QuestionFormatSettingState(
       {this.numberOfProblems = 0,
+      this.numberOfDigits = 0,
       this.plusChecked = false,
       this.minusChecked = false,
       this.multipliedChecked = false,
@@ -178,6 +194,9 @@ class _$_QuestionFormatSettingState implements _QuestionFormatSettingState {
   @JsonKey(defaultValue: 0)
   @override
   final int numberOfProblems;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int numberOfDigits;
   @JsonKey(defaultValue: false)
   @override
   final bool plusChecked;
@@ -193,7 +212,7 @@ class _$_QuestionFormatSettingState implements _QuestionFormatSettingState {
 
   @override
   String toString() {
-    return 'QuestionFormatSettingState(numberOfProblems: $numberOfProblems, plusChecked: $plusChecked, minusChecked: $minusChecked, multipliedChecked: $multipliedChecked, dividedChecked: $dividedChecked)';
+    return 'QuestionFormatSettingState(numberOfProblems: $numberOfProblems, numberOfDigits: $numberOfDigits, plusChecked: $plusChecked, minusChecked: $minusChecked, multipliedChecked: $multipliedChecked, dividedChecked: $dividedChecked)';
   }
 
   @override
@@ -203,6 +222,8 @@ class _$_QuestionFormatSettingState implements _QuestionFormatSettingState {
             other is _QuestionFormatSettingState &&
             (identical(other.numberOfProblems, numberOfProblems) ||
                 other.numberOfProblems == numberOfProblems) &&
+            (identical(other.numberOfDigits, numberOfDigits) ||
+                other.numberOfDigits == numberOfDigits) &&
             (identical(other.plusChecked, plusChecked) ||
                 other.plusChecked == plusChecked) &&
             (identical(other.minusChecked, minusChecked) ||
@@ -214,8 +235,8 @@ class _$_QuestionFormatSettingState implements _QuestionFormatSettingState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, numberOfProblems, plusChecked,
-      minusChecked, multipliedChecked, dividedChecked);
+  int get hashCode => Object.hash(runtimeType, numberOfProblems, numberOfDigits,
+      plusChecked, minusChecked, multipliedChecked, dividedChecked);
 
   @JsonKey(ignore: true)
   @override
@@ -228,6 +249,7 @@ abstract class _QuestionFormatSettingState
     implements QuestionFormatSettingState {
   const factory _QuestionFormatSettingState(
       {int numberOfProblems,
+      int numberOfDigits,
       bool plusChecked,
       bool minusChecked,
       bool multipliedChecked,
@@ -235,6 +257,8 @@ abstract class _QuestionFormatSettingState
 
   @override
   int get numberOfProblems;
+  @override
+  int get numberOfDigits;
   @override
   bool get plusChecked;
   @override

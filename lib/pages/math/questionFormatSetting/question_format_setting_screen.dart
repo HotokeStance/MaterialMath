@@ -34,6 +34,8 @@ class _QuestionFormatSettingScreen extends StatelessWidget {
           SizedBox(height: 32),
           NumberOfProblemsSetting(),
           SizedBox(height: 32),
+          NumberOfDigitsSetting(),
+          SizedBox(height: 32),
           CalculationSymbolSetting(),
           SizedBox(height: 32),
           StartMath(),
@@ -67,6 +69,34 @@ class NumberOfProblemsSetting extends StatelessWidget {
               }),
         ),
         const Text('問'),
+      ],
+    );
+  }
+}
+
+/// 桁数の設定
+class NumberOfDigitsSetting extends StatelessWidget {
+  const NumberOfDigitsSetting({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 130,
+          height: 60,
+          child: TextField(
+              enabled: true,
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              onChanged: (input) {
+                context
+                    .read<QuestionFormatSettingStateNotifier>()
+                    .changNumberOfDigits(input);
+              }),
+        ),
+        const Text('桁'),
       ],
     );
   }

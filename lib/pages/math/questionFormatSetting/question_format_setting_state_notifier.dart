@@ -30,6 +30,17 @@ class QuestionFormatSettingStateNotifier
     }
   }
 
+  void changNumberOfDigits(String numberOfDigits) {
+    try {
+      final intNumberOfDigits = int.parse(numberOfDigits);
+      state = state.copyWith(
+        numberOfDigits: intNumberOfDigits,
+      );
+    } on Exception catch (_) {
+      debugPrint('数値に変換できません');
+    }
+  }
+
   void changeNumberOfProblems(String numberOfProblems) {
     try {
       final intNumberOfProblems = int.parse(numberOfProblems);
@@ -42,11 +53,15 @@ class QuestionFormatSettingStateNotifier
   }
 
   Future<void> startMath(BuildContext context) async {
+    if (state.numberOfProblems == 0 || state.numberOfDigits == 0) {
+      return;
+    }
     await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => QuestionSubmissionScreen(
           numberOfProblems: state.numberOfProblems,
+          numberOfDigits: state.numberOfDigits,
           plusChecked: state.plusChecked,
           minusChecked: state.minusChecked,
           multipliedChecked: state.multipliedChecked,
