@@ -6,7 +6,6 @@ import 'package:material_math/main_state.dart';
 import 'package:material_math/main_state_notifier.dart';
 import 'package:material_math/pages/home/home_screen.dart';
 import 'package:material_math/pages/math/questionFormatSetting/question_format_setting_screen.dart';
-import 'package:material_math/pages/setting/setting_screen.dart';
 import 'package:material_math/util/app_color.dart';
 import 'package:material_math/util/typeAdapter/question_submission_result_type_adapter.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +71,6 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const QuestionFormatSettingScreen(),
-    const SettingScreen(),
   ];
 
   @override
@@ -92,10 +90,6 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
             label: 'Math',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Setting',
           ),
         ],
         currentIndex: selectedIndex,
